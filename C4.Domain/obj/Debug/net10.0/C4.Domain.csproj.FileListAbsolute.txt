@@ -1,0 +1,11 @@
+C:\Source\c4ntrol.backend\C4.Domain\bin\Debug\net10.0\C4.Domain.deps.json
+C:\Source\c4ntrol.backend\C4.Domain\bin\Debug\net10.0\C4.Domain.dll
+C:\Source\c4ntrol.backend\C4.Domain\bin\Debug\net10.0\C4.Domain.pdb
+C:\Source\c4ntrol.backend\C4.Domain\obj\Debug\net10.0\C4.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Source\c4ntrol.backend\C4.Domain\obj\Debug\net10.0\C4.Domain.AssemblyInfoInputs.cache
+C:\Source\c4ntrol.backend\C4.Domain\obj\Debug\net10.0\C4.Domain.AssemblyInfo.cs
+C:\Source\c4ntrol.backend\C4.Domain\obj\Debug\net10.0\C4.Domain.csproj.CoreCompileInputs.cache
+C:\Source\c4ntrol.backend\C4.Domain\obj\Debug\net10.0\C4.Domain.dll
+C:\Source\c4ntrol.backend\C4.Domain\obj\Debug\net10.0\refint\C4.Domain.dll
+C:\Source\c4ntrol.backend\C4.Domain\obj\Debug\net10.0\C4.Domain.pdb
+C:\Source\c4ntrol.backend\C4.Domain\obj\Debug\net10.0\ref\C4.Domain.dll

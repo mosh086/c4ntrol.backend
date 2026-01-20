@@ -1,0 +1,17 @@
+<Solution>
+  <Folder Name="/root/" />
+  <Folder Name="/src/" />
+  <Folder Name="/src/application/">
+    <Project Path="C4.Application/C4.Application.csproj" />
+  </Folder>
+  <Folder Name="/src/domain/">
+    <Project Path="C4.Domain/C4.Domain.csproj" />
+  </Folder>
+  <Folder Name="/src/infrastructure/">
+    <Project Path="C4.Infrastructure/C4.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/src/presentation/">
+    <Project Path="C4.WebApi/C4.WebApi.csproj" />
+  </Folder>
+  <Folder Name="/test/" />
+</Solution>
