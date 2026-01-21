@@ -231,4 +231,3 @@ BenchmarkDotNet.Artifacts/
 
 # AppSettings (often contains secrets)
 appsettings.local.json
-# appsettings.Development.json
