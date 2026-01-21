@@ -1,5 +1,7 @@
 <Solution>
-  <Folder Name="/root/" />
+  <Folder Name="/root/">
+    <File Path=".gitignore" />
+  </Folder>
   <Folder Name="/src/" />
   <Folder Name="/src/application/">
     <Project Path="C4.Application/C4.Application.csproj" />

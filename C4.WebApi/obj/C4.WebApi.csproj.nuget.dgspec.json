@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Source\\c4ntrol.backend\\C4.WebApi\\C4.WebApi.csproj": {}
+    "C:\\Source\\prometheus.74\\c4ntrol.backend\\C4.WebApi\\C4.WebApi.csproj": {}
   },
   "projects": {
-    "C:\\Source\\c4ntrol.backend\\C4.Application\\C4.Application.csproj": {
+    "C:\\Source\\prometheus.74\\c4ntrol.backend\\C4.Application\\C4.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Source\\c4ntrol.backend\\C4.Application\\C4.Application.csproj",
+        "projectUniqueName": "C:\\Source\\prometheus.74\\c4ntrol.backend\\C4.Application\\C4.Application.csproj",
         "projectName": "C4.Application",
-        "projectPath": "C:\\Source\\c4ntrol.backend\\C4.Application\\C4.Application.csproj",
-        "packagesPath": "C:\\Users\\esalazar\\.nuget\\packages\\",
-        "outputPath": "C:\\Source\\c4ntrol.backend\\C4.Application\\obj\\",
+        "projectPath": "C:\\Source\\prometheus.74\\c4ntrol.backend\\C4.Application\\C4.Application.csproj",
+        "packagesPath": "C:\\Users\\mosh0\\.nuget\\packages\\",
+        "outputPath": "C:\\Source\\prometheus.74\\c4ntrol.backend\\C4.Application\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\esalazar\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\mosh0\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,15 +26,14 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net10.0": {
             "targetAlias": "net10.0",
             "projectReferences": {
-              "C:\\Source\\c4ntrol.backend\\C4.Domain\\C4.Domain.csproj": {
-                "projectPath": "C:\\Source\\c4ntrol.backend\\C4.Domain\\C4.Domain.csproj"
+              "C:\\Source\\prometheus.74\\c4ntrol.backend\\C4.Domain\\C4.Domain.csproj": {
+                "projectPath": "C:\\Source\\prometheus.74\\c4ntrol.backend\\C4.Domain\\C4.Domain.csproj"
               }
             }
           }
@@ -70,7 +69,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.101/PortableRuntimeIdentifierGraph.json",
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.102/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.CSharp": "(,4.7.32767]",
             "Microsoft.VisualBasic": "(,10.4.32767]",
@@ -348,20 +347,20 @@
         }
       }
     },
-    "C:\\Source\\c4ntrol.backend\\C4.Domain\\C4.Domain.csproj": {
+    "C:\\Source\\prometheus.74\\c4ntrol.backend\\C4.Domain\\C4.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Source\\c4ntrol.backend\\C4.Domain\\C4.Domain.csproj",
+        "projectUniqueName": "C:\\Source\\prometheus.74\\c4ntrol.backend\\C4.Domain\\C4.Domain.csproj",
         "projectName": "C4.Domain",
-        "projectPath": "C:\\Source\\c4ntrol.backend\\C4.Domain\\C4.Domain.csproj",
-        "packagesPath": "C:\\Users\\esalazar\\.nuget\\packages\\",
-        "outputPath": "C:\\Source\\c4ntrol.backend\\C4.Domain\\obj\\",
+        "projectPath": "C:\\Source\\prometheus.74\\c4ntrol.backend\\C4.Domain\\C4.Domain.csproj",
+        "packagesPath": "C:\\Users\\mosh0\\.nuget\\packages\\",
+        "outputPath": "C:\\Source\\prometheus.74\\c4ntrol.backend\\C4.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\esalazar\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\mosh0\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -370,7 +369,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -410,7 +408,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.101/PortableRuntimeIdentifierGraph.json",
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.102/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.CSharp": "(,4.7.32767]",
             "Microsoft.VisualBasic": "(,10.4.32767]",
@@ -688,20 +686,20 @@
         }
       }
     },
-    "C:\\Source\\c4ntrol.backend\\C4.Infrastructure\\C4.Infrastructure.csproj": {
+    "C:\\Source\\prometheus.74\\c4ntrol.backend\\C4.Infrastructure\\C4.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Source\\c4ntrol.backend\\C4.Infrastructure\\C4.Infrastructure.csproj",
+        "projectUniqueName": "C:\\Source\\prometheus.74\\c4ntrol.backend\\C4.Infrastructure\\C4.Infrastructure.csproj",
         "projectName": "C4.Infrastructure",
-        "projectPath": "C:\\Source\\c4ntrol.backend\\C4.Infrastructure\\C4.Infrastructure.csproj",
-        "packagesPath": "C:\\Users\\esalazar\\.nuget\\packages\\",
-        "outputPath": "C:\\Source\\c4ntrol.backend\\C4.Infrastructure\\obj\\",
+        "projectPath": "C:\\Source\\prometheus.74\\c4ntrol.backend\\C4.Infrastructure\\C4.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\mosh0\\.nuget\\packages\\",
+        "outputPath": "C:\\Source\\prometheus.74\\c4ntrol.backend\\C4.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\esalazar\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\mosh0\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -710,15 +708,14 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net10.0": {
             "targetAlias": "net10.0",
             "projectReferences": {
-              "C:\\Source\\c4ntrol.backend\\C4.Application\\C4.Application.csproj": {
-                "projectPath": "C:\\Source\\c4ntrol.backend\\C4.Application\\C4.Application.csproj"
+              "C:\\Source\\prometheus.74\\c4ntrol.backend\\C4.Application\\C4.Application.csproj": {
+                "projectPath": "C:\\Source\\prometheus.74\\c4ntrol.backend\\C4.Application\\C4.Application.csproj"
               }
             }
           }
@@ -754,7 +751,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.101/PortableRuntimeIdentifierGraph.json",
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.102/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.CSharp": "(,4.7.32767]",
             "Microsoft.VisualBasic": "(,10.4.32767]",
@@ -1032,20 +1029,20 @@
         }
       }
     },
-    "C:\\Source\\c4ntrol.backend\\C4.WebApi\\C4.WebApi.csproj": {
+    "C:\\Source\\prometheus.74\\c4ntrol.backend\\C4.WebApi\\C4.WebApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Source\\c4ntrol.backend\\C4.WebApi\\C4.WebApi.csproj",
+        "projectUniqueName": "C:\\Source\\prometheus.74\\c4ntrol.backend\\C4.WebApi\\C4.WebApi.csproj",
         "projectName": "C4.WebApi",
-        "projectPath": "C:\\Source\\c4ntrol.backend\\C4.WebApi\\C4.WebApi.csproj",
-        "packagesPath": "C:\\Users\\esalazar\\.nuget\\packages\\",
-        "outputPath": "C:\\Source\\c4ntrol.backend\\C4.WebApi\\obj\\",
+        "projectPath": "C:\\Source\\prometheus.74\\c4ntrol.backend\\C4.WebApi\\C4.WebApi.csproj",
+        "packagesPath": "C:\\Users\\mosh0\\.nuget\\packages\\",
+        "outputPath": "C:\\Source\\prometheus.74\\c4ntrol.backend\\C4.WebApi\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\esalazar\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\mosh0\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -1054,18 +1051,17 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net10.0": {
             "targetAlias": "net10.0",
             "projectReferences": {
-              "C:\\Source\\c4ntrol.backend\\C4.Application\\C4.Application.csproj": {
-                "projectPath": "C:\\Source\\c4ntrol.backend\\C4.Application\\C4.Application.csproj"
+              "C:\\Source\\prometheus.74\\c4ntrol.backend\\C4.Application\\C4.Application.csproj": {
+                "projectPath": "C:\\Source\\prometheus.74\\c4ntrol.backend\\C4.Application\\C4.Application.csproj"
               },
-              "C:\\Source\\c4ntrol.backend\\C4.Infrastructure\\C4.Infrastructure.csproj": {
-                "projectPath": "C:\\Source\\c4ntrol.backend\\C4.Infrastructure\\C4.Infrastructure.csproj"
+              "C:\\Source\\prometheus.74\\c4ntrol.backend\\C4.Infrastructure\\C4.Infrastructure.csproj": {
+                "projectPath": "C:\\Source\\prometheus.74\\c4ntrol.backend\\C4.Infrastructure\\C4.Infrastructure.csproj"
               }
             }
           }
@@ -1110,7 +1106,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.101/PortableRuntimeIdentifierGraph.json",
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.102/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.AspNetCore": "(,10.0.32767]",
             "Microsoft.AspNetCore.Antiforgery": "(,10.0.32767]",
