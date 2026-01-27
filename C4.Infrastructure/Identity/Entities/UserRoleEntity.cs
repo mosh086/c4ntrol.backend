@@ -1,0 +1,43 @@
+﻿using C4.Domain.Common;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace C4.Infrastructure.Identity.Entities;
+
+public class UserRoleEntity : IdentityUserRole<long>, IAuditableEntity<long>
+{
+    public DateTime CreatedDate { get; private set; }
+
+    public long CreatedByUserRoleId { get; private set; }
+
+    public DateTime? UpdatedDate { get; private set; }
+
+    public long? UpdatedByUserRoleId { get; private set; }
+
+    public EntityId EntityId { get; private set; } = Guid.NewGuid();
+
+    [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    public long Id { get; private set; }
+
+    public bool IsDeleted { get; private set; }
+    public bool IsActive { get; private set; }
+
+    public void Access()
+    {
+        IsActive = true;
+        IsDeleted = false;
+    }
+    public void Delete()
+    {
+        IsActive = false;
+        IsDeleted = true;
+    }
+    public UserRoleEntity() { }
+    public UserRoleEntity(long userId, long roleId)
+    {
+        UserId = userId;
+        RoleId = roleId;
+    }
+
+}

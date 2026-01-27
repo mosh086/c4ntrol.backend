@@ -1,0 +1,13 @@
+﻿global using AutoMapper;
+global using C4.Application.Common.Handlers;
+global using C4.Application.Common.Models.DTOs;
+global using C4.Application.Common.Models.Requests;
+global using C4.Application.Common.Patterns.UnitOfWorkPattern;
+global using C4.Application.Common.Repository;
+global using C4.Application.Exceptions;
+global using C4.Application.Providers;
+global using C4.Domain.Common;
+global using FluentValidation;
+global using MediatR;
+global using System.ComponentModel.DataAnnotations.Schema;
+global using System.Linq.Expressions;
