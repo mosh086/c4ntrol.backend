@@ -1,0 +1,20 @@
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
+
+namespace C4.Application.Utilities.Extensions;
+
+public static class JsonExtentions
+{
+    public static string ToJson(this object obj)
+    {
+        return JsonConvert.SerializeObject(obj, new JsonSerializerSettings()
+        {
+            ContractResolver = new CamelCasePropertyNamesContractResolver()
+        });
+    }
+
+    public static T To<T>(this string str)
+    {
+        return JsonConvert.DeserializeObject<T>(str);
+    }
+}
