@@ -12,7 +12,7 @@ public class UserController : AuthorizationController
     public async Task<IActionResult> Create(UserCreateRequest request) => await RequestAsync<UserCreateRequest, UserCreateResponse>(request);
 
     [HttpPut]
-    public async Task<IActionResult> Update(UserUpdateRequest Request) => await RequestAsync<UserUpdateRequest, UserUpdateResponse>(Request);
+    public async Task<IActionResult> Update(List<UserUpdateItemsRequest> request) => await RequestAsync<UserUpdateRequest, UserUpdateResponse>(new UserUpdateRequest { Items = request });
 
     [HttpDelete("{entityId}")]
     public async Task<IActionResult> Delete(Guid entityId) => await RequestAsync<UserDeleteRequest, UserDeleteResponse>(new UserDeleteRequest(entityId));

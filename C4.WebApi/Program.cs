@@ -1,5 +1,5 @@
 using C4.WebApi;
-
+using MediatR;
 try
 {
     var builder = WebApplication.CreateBuilder(args).WebApplicationBuilder();

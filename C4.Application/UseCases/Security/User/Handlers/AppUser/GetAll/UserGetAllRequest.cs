@@ -2,6 +2,6 @@
 
 public class UserGetAllRequest : RequestModel<List<UserGetAllResponse>>
 {
-    public string Email { get; set; } = string.Empty;
+    // public string Email { get; set; } = string.Empty;
     // Add other request properties here
 }

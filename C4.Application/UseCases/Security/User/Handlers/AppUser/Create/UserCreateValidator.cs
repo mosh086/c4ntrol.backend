@@ -1,8 +1,8 @@
 ﻿namespace C4.Application.UseCases.Security.User.Handlers.AppUser.Create;
 
-public class UserCreateRequestValidator : AbstractValidator<UserCreateRequest>
+public class UserCreateValidator : AbstractValidator<UserCreateRequest>
 {
-    public UserCreateRequestValidator()
+    public UserCreateValidator()
     {
         RuleFor(x => x.Name)
             .NotEmpty().WithMessage("Name is required")

@@ -7,6 +7,7 @@ using C4.Infrastructure.Data;
 using C4.Infrastructure.Exceptions;
 using C4.Infrastructure.Identity.Entities;
 using C4.Infrastructure.Identity.Parameters;
+using System.Threading.Tasks;
 
 namespace C4.Infrastructure.UseCases.Security.User.Repositories;
 
@@ -30,17 +31,7 @@ public class UserRepository : Repository<AppUserEntity, long>, IUserRepository
                 throw new ArgumentNullException(nameof(entity));
             }
 
-            UserCreateParameters parameter = new UserCreateParameters(
-            entity.UserName,
-            entity.UserName,//  Password
-            entity.Email,
-            entity.Name,
-            entity.Family,
-            entity.DisplayName,
-            entity.PhoneNumber,
-            entity.PersonalCode
-            );
-            UserEntity userEntity = new UserEntity(parameter);
+            UserEntity userEntity = new UserEntity(entity);
 
             var result = await _userManager.CreateAsync(userEntity, Password);
             if (!result.Succeeded)
@@ -52,8 +43,47 @@ public class UserRepository : Repository<AppUserEntity, long>, IUserRepository
         }
         catch (Exception ex)
         {
-            throw ex;
+            throw new ApplicationException(ex.Message);
         }
+    }
+
+    public override async Task<AppUserEntity> UpdateAsync(AppUserEntity entity, CancellationToken cancellationToken)
+    {
+        try
+        {
+            if (entity == null)
+            {
+                throw new ArgumentNullException(nameof(entity));
+            }
+
+            var user = await Context.Users.AsNoTracking().FirstAsync(u => u.EntityId == entity.EntityId);
+
+            UserEntity userEntity = new UserEntity(user, entity);
+
+            Context.ChangeTracker.Clear();
+            var result = await _userManager.UpdateAsync(userEntity);
+            if (!result.Succeeded)
+            {
+                throw new IdentityException(result.Errors);
+            }
+            entity.SetId(userEntity.Id);
+
+            return entity;
+        }
+        catch (Exception ex)
+        {
+            throw new ApplicationException(ex.Message);
+        }
+    }
+
+    public override void UpdateRange(IEnumerable<AppUserEntity> entities, CancellationToken cancellationToken)
+    {
+        var users = entities.Select(entity => 
+        {
+            return _userManager.Users.SingleOrDefault(item => item.EntityId.Equals(entity.EntityId.Value)).AppUserEntity();
+        });
+
+        Entity.UpdateRange(users);
     }
 
     public override IEnumerable<AppUserEntity> Get(CancellationToken cancellationToken)
@@ -74,12 +104,22 @@ public class UserRepository : Repository<AppUserEntity, long>, IUserRepository
     public override async Task<AppUserEntity> GetAsync(Guid entityId, CancellationToken cancellationToken)
     {
         var entity = await _userManager.Users.SingleOrDefaultAsync(item => item.EntityId.Equals(entityId));
-        return _mapper.Map<UserEntity, AppUserEntity>(entity);
+        return entity.AppUserEntity();
     }
+    
     public override AppUserEntity Get(Guid entityId, CancellationToken cancellationToken)
         => _mapper.Map<UserEntity, AppUserEntity>(_userManager.Users.SingleOrDefault(item => item.EntityId.Equals(entityId)));
+    
     public override async Task<IEnumerable<AppUserEntity>> GetAsync(CancellationToken cancellationToken)
-        => _mapper.Map<UserEntity, AppUserEntity>(await _userManager.Users.ToListAsync());
+    {
+        var entities = await Context.Users
+            .AsNoTracking()
+            .Where(u => u.IsDeleted == false)
+            .Select(u => u.AppUserEntity())
+            .ToListAsync(cancellationToken);
+        return entities;
+    }
+
     public void SetPassword(string password)
     {
         Password = password;
@@ -104,7 +144,7 @@ public class UserRepository : Repository<AppUserEntity, long>, IUserRepository
 
     public override bool Remove(AppUserEntity entity, CancellationToken cancellationToken)
     {
-        var item = Context.UserEntities.Single(item => item.EntityId.Equals(entity.EntityId));
+        var item = Context.UserEntities.Single(item => item.Id.Equals(entity.Id));
         item.Delete();
         Context.SaveChanges();
         return true;
@@ -125,7 +165,7 @@ public class UserRepository : Repository<AppUserEntity, long>, IUserRepository
     }
     public override async Task<bool> RemoveAsync(AppUserEntity entity, CancellationToken cancellationToken)
     {
-        var item = await Context.UserEntities.SingleAsync(item => item.EntityId.Equals(entity.EntityId));
+        var item = await Context.UserEntities.SingleAsync(item => item.Id.Equals(entity.Id));
         item.Delete();
         Context.SaveChanges();
         return true;

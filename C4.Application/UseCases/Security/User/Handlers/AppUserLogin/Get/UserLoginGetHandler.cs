@@ -1,14 +1,6 @@
 ﻿using C4.Application.UseCases.Security.User.Repositories;
 
-namespace C4.Application.UseCases.Security.User.Handlers.AppUserLogin.GetAll;
-
-
-public record UserLoginGetResponse(string Message);
-
-public class UserLoginGetRequest : RequestModel<List<UserLoginGetResponse>>
-{
-
-}
+namespace C4.Application.UseCases.Security.User.Handlers.AppUserLogin.Get;
 
 public class UserLoginGetHandler : Handler<UserLoginGetRequest, List<UserLoginGetResponse>>
 {
@@ -37,19 +29,3 @@ public class UserLoginGetHandler : Handler<UserLoginGetRequest, List<UserLoginGe
     }
 }
 
-public class UserProfile : Profile
-{
-    public UserProfile()
-    {
-        CreateMap<UserLoginGetRequest, UserLoginGetRequest>().ReverseMap();
-        // Add other mappings as needed
-    }
-}
-
-// Validator for UserLoginGetRequest
-public class UserLoginGetRequestValidator : AbstractValidator<UserLoginGetRequest>
-{
-    public UserLoginGetRequestValidator()
-    {
-    }
-}

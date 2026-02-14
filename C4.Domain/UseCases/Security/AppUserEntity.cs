@@ -29,18 +29,52 @@ public class AppUserEntity : BaseAuditableEntity
 
     public void SetId(long id) => Id = id;
 
+    public AppUserEntity()
+    {
+        
+    }
     public AppUserEntity(AppUserCreateParameters parameters)
     {
         Name = parameters.Name;
-        Family = parameters.Family;
-        DisplayName = $"{parameters.Name} {parameters.Family}";
-        PersonalCode = parameters.PersonalCode;
         UserName = parameters.UserName;
         NormalizedUserName = UserName.ToUpper();
         Email = parameters.Email;
         NormalizedEmail = Email.ToUpper();
         PhoneNumber = parameters.PhoneNumber;
 
+    }
+
+    public AppUserEntity(long id, Guid entityId, string name, string userName, string email, string phoneNumber)
+    {
+        Id = id;
+        EntityId = entityId;
+        Name = name;
+        UserName = userName;
+        Email = email;
+        PhoneNumber = phoneNumber;
+    }
+
+    public AppUserEntity(AppUserEntity entity)
+    {
+        Id = entity.Id;
+        EntityId = entity.EntityId;
+        Name = entity.Name;
+        Email = entity.Email;
+        NormalizedEmail = entity.NormalizedEmail;
+        EmailConfirmed = entity.EmailConfirmed;
+        UserName = entity.UserName;
+        NormalizedUserName = entity.NormalizedUserName;
+        PhoneNumber = entity.PhoneNumber;
+        PhoneNumberConfirmed = entity.PhoneNumberConfirmed;
+        PasswordHash = entity.PasswordHash;
+        SecurityStamp = entity.SecurityStamp;
+        TwoFactorEnabled = entity.TwoFactorEnabled;
+        LockoutEnd = entity.LockoutEnd;
+        LockoutEnabled = entity.LockoutEnabled;
+        AccessFailedCount = entity.AccessFailedCount;
+        ConcurrencyStamp = entity.ConcurrencyStamp;
+        //CreatedAt = entity.CreatedAt;
+        //CreatedBy = entity.CreatedBy;
     }
 
     public void SetPassword(string securityStamp, string passwordHash, string concurrencyStamp)

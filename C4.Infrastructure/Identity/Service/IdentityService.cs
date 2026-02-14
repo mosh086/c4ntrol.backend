@@ -94,6 +94,6 @@ public class IdentityProfile : Profile
     {
         CreateMap<AppUserEntity, UserCreateParameters>()
             .ReverseMap()
-            .ForMember(dest => dest.CreatedDate, opt => opt.MapFrom(_ => DateTime.Now));
+            .ForMember(dest => dest.CreatedAt, opt => opt.MapFrom(_ => DateTime.Now));
     }
 }

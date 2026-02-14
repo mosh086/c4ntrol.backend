@@ -1,6 +1,8 @@
 ﻿using C4.Infrastructure.Data;
 using C4.Infrastructure.Identity.Entities;
 using C4.Infrastructure.Identity.Entities.Parameters;
+
+//using C4.Infrastructure.Identity.Entities.Parameters;
 using C4.Infrastructure.Identity.Models;
 using Newtonsoft.Json;
 
@@ -57,7 +59,7 @@ public class AppUserManager<TUser> : UserManager<TUser> where TUser : UserEntity
         var userToken = new UserTokenEntity(parameters);
         await Context.Set<UserTokenEntity>().AddAsync(userToken);
         await Context.SaveChangesAsync();
-        await AddLoginAsync(user, new UserLoginInfo(LoginProvider, TokenName, user.DisplayName));
+        await AddLoginAsync(user, new UserLoginInfo(LoginProvider, TokenName, user.UserName));
         return new IdentityResult<string>(true, JsonConvert.SerializeObject(parameters));
     }
 }

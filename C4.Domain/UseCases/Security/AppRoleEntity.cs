@@ -10,24 +10,21 @@ public class AppRoleEntity : BaseAuditableEntity
     private List<AppUserRoleEntity>? _userRoleEntities;
     public virtual IReadOnlyCollection<AppUserRoleEntity> UserRoleEntities => _userRoleEntities!;
 
-    public bool IsActive { get; }
     public bool IsDeleted { get; }
 
-    public AppRoleEntity(string title, string name)
+    public AppRoleEntity(string name)
     {
-        Title = title;
         Name = name;
         NormalizedName = name.ToUpper();
     }
 
-    public AppRoleEntity(long id, string name, string normalizedName, string concurrencyStamp, string title, bool isActive, bool isDeleted)
+    public AppRoleEntity(long id, string name, string normalizedName, string concurrencyStamp, string title, bool isDeleted)
     {
         Id = id;
         Name = name;
         NormalizedName = normalizedName;
         ConcurrencyStamp = concurrencyStamp;
         Title = title;
-        IsActive = isActive;
         IsDeleted = isDeleted;
     }
 

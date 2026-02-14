@@ -15,12 +15,12 @@ public class UserInfoService : IUser
     }
 
     public string Name => GetClaimValue("Name");
-    public string Family => GetClaimValue("Family");
-    public string DisplayName => $"{Name} {Family}".Trim();
+    //public string Family => GetClaimValue("Family");
+    //public string DisplayName => $"{Name} {Family}".Trim();
     public long UserId => GetClaimValueAsLong("UserId");
     public long UserRoleId => GetClaimValueAsLong("UserRoleId");
     public string RoleName => GetClaimValue("Role");
-    public string RoleTitle => GetClaimValue("RoleTitle");
+    //public string RoleTitle => GetClaimValue("RoleTitle");
     public string Ip => _httpContextAccessor?.HttpContext?.Connection?.RemoteIpAddress?.ToString() ?? "null";
     public string Agent => GetClaimValue("Agent");
     public Dictionary<long, string> RolesName => GetRoles();

@@ -6,23 +6,20 @@ namespace C4.Infrastructure.Data.Interceptors;
 
 public static class AuditableShadowProperties
 {
-    public static readonly Func<object, bool> EFPropertyIsActive = entity => EF.Property<bool>(entity, IsActive);
-    public static readonly string IsActive = nameof(IsActive);
-
     public static readonly Func<object, bool> EFPropertyIsDeleted = entity => EF.Property<bool>(entity, IsDeleted);
     public static readonly string IsDeleted = nameof(IsDeleted);
 
-    public static readonly Func<object, long> EFPropertyCreatedByUserRoleId = entity => EF.Property<long>(entity, CreatedByUserRoleId);
-    public static readonly string CreatedByUserRoleId = nameof(CreatedByUserRoleId);
+    public static readonly Func<object, long> EFPropertyCreatedBy = entity => EF.Property<long>(entity, CreatedBy);
+    public static readonly string CreatedBy = nameof(CreatedBy);
 
-    public static readonly Func<object, long?> EFPropertyUpdatedByUserRoleId = entity => EF.Property<long?>(entity, UpdatedByUserRoleId);
-    public static readonly string UpdatedByUserRoleId = nameof(UpdatedByUserRoleId);
+    public static readonly Func<object, long?> EFPropertyLastUpdatedBy = entity => EF.Property<long?>(entity, LastUpdatedBy);
+    public static readonly string LastUpdatedBy = nameof(LastUpdatedBy);
 
-    public static readonly Func<object, DateTime> EFPropertyCreatedDate = entity => EF.Property<DateTime>(entity, CreatedDate);
-    public static readonly string CreatedDate = nameof(CreatedDate);
+    public static readonly Func<object, DateTime> EFPropertyCreatedAt = entity => EF.Property<DateTime>(entity, CreatedAt);
+    public static readonly string CreatedAt = nameof(CreatedAt);
 
-    public static readonly Func<object, DateTime?> EFPropertyUpdatedDate = entity => EF.Property<DateTime?>(entity, UpdatedDate);
-    public static readonly string UpdatedDate = nameof(UpdatedDate);
+    public static readonly Func<object, DateTime?> EFPropertyLastUpdatedAt = entity => EF.Property<DateTime?>(entity, LastUpdatedAt);
+    public static readonly string LastUpdatedAt = nameof(LastUpdatedAt);
 
     public static readonly Func<object, EntityId> EFPropertyEntityId = entity => EF.Property<EntityId>(entity, EntityId);
     public static readonly string EntityId = nameof(EntityId);
@@ -41,15 +38,13 @@ public static class AuditableShadowProperties
             modelBuilder.Entity(entityType.ClrType)
                         .Property<bool>(IsDeleted).IsRequired().HasDefaultValue(false);
             modelBuilder.Entity(entityType.ClrType)
-                        .Property<bool>(IsActive).IsRequired().HasDefaultValue(true);
+                        .Property<long>(CreatedBy).HasMaxLength(50);
             modelBuilder.Entity(entityType.ClrType)
-                        .Property<long>(CreatedByUserRoleId).HasMaxLength(50);
+                        .Property<long?>(LastUpdatedBy).HasMaxLength(50);
             modelBuilder.Entity(entityType.ClrType)
-                        .Property<long?>(UpdatedByUserRoleId).HasMaxLength(50);
+                        .Property<DateTime>(CreatedAt);
             modelBuilder.Entity(entityType.ClrType)
-                        .Property<DateTime>(CreatedDate);
-            modelBuilder.Entity(entityType.ClrType)
-                        .Property<DateTime?>(UpdatedDate);
+                        .Property<DateTime?>(LastUpdatedAt);
             modelBuilder.Entity(entityType.ClrType)
                         .Property<EntityId>(EntityId).IsRequired().ValueGeneratedOnAdd();
         }
@@ -60,27 +55,25 @@ public static class AuditableShadowProperties
         this ChangeTracker changeTracker,
         IUser user)
     {
-
         var userAgent = user.Agent;
         var userIp = user.Ip;
         var now = DateTime.Now;
-        var userRoleId = user.UserRoleId;
+        var userId = user.UserId;
 
-        var modifiedEntries = changeTracker.Entries().Where(x => x.State == EntityState.Modified);
-        foreach (var modifiedEntry in modifiedEntries)
+        foreach (var entry in changeTracker.Entries()) 
         {
-            modifiedEntry.Property(UpdatedDate).CurrentValue = now;
-            modifiedEntry.Property(UpdatedByUserRoleId).CurrentValue = userRoleId;
-        }
+            if (entry.State == EntityState.Modified && typeof(IAuditableEntity<long>).IsAssignableFrom(entry.Metadata.ClrType)) 
+            {
+                entry.Property(LastUpdatedAt).CurrentValue = now;
+                entry.Property(LastUpdatedBy).CurrentValue = userId;
+            }
 
-        var addedEntries = changeTracker.Entries().Where(x => x.State == EntityState.Added);
-        foreach (var addedEntry in addedEntries)
-        {
-            addedEntry.Property(CreatedDate).CurrentValue = now;
-            addedEntry.Property(CreatedByUserRoleId).CurrentValue = userRoleId;
-            addedEntry.Property(IsActive).CurrentValue = true;
-            addedEntry.Property(IsDeleted).CurrentValue = false;
+            if (entry.State == EntityState.Added && typeof(IAuditableEntity<long>).IsAssignableFrom(entry.Metadata.ClrType)) 
+            {
+                entry.Property(CreatedAt).CurrentValue = now;
+                entry.Property(CreatedBy).CurrentValue = userId;
+                entry.Property(IsDeleted).CurrentValue = false;
+            }
         }
     }
-
 }

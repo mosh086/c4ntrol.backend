@@ -1,8 +1,10 @@
 ﻿using C4.Application.Common.Patterns.MediatRPattern.Behaviours;
+using C4.Application.Interfaces;
 using C4.Application.Providers.ObjectMapper;
 using C4.Application.Providers.Serializer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using System.Reflection;
 
 namespace C4.Application;

@@ -95,8 +95,7 @@ public class JwtTokenService : ITokenService
             new(ClaimTypes.NameIdentifier, user.Id.ToString()),
             new(ClaimTypes.Name, user.UserName),
             new("Name", user.Name),
-            new("Family", user.Family),
-            new("DisplayName", user.DisplayName),
+            new("PhoneNumber", user.PhoneNumber),
             new("UserId", user.Id.ToString()),
             new("UserRoleId", user.Id.ToString()),//    TODO
             new("RoleName", user.Id.ToString()), // TODO
@@ -165,11 +164,11 @@ public class JwtTokenService : ITokenService
         return new UserProfileDTO
         {
             Id = user.Id,
+            EntityId = user.EntityId.Value,
             Username = user.UserName,
             Email = user.Email,
             PhoneNumber = user.PhoneNumber,
-            Name = user.Name,
-            Family = user.Family
+            Name = user.Name
         };
     }
 }

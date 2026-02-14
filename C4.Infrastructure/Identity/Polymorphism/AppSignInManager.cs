@@ -34,8 +34,4 @@ public class AppSignInManager<TUser> : SignInManager<TUser> where TUser : UserEn
     {
         return base.PasswordSignInAsync(user, password, isPersistent, lockoutOnFailure);
     }
-    public override Task<SignInResult> PasswordSignInAsync(string userName, string password, bool isPersistent, bool lockoutOnFailure)
-    {
-        return base.PasswordSignInAsync(userName, password, isPersistent, lockoutOnFailure);
-    }
 }

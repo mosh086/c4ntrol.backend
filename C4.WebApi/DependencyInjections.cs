@@ -31,7 +31,7 @@ public static class DependencyInjections
         builder.Services.AddHttpContextAccessor();
         builder.Services.AddHttpClient();
 
-        var assemblies = ("CleanArchitecture").GetAssemblies().ToArray();
+        var assemblies = ("C4").GetAssemblies().ToArray();
 
         builder.Services.AddApplicationLibrary(configuration, assemblies);
 

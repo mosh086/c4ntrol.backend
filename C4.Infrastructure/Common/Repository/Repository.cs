@@ -34,6 +34,24 @@ public abstract class Repository<TEntity, TId> : IRepository<TEntity, TId>
         return (await Entity.AddAsync(entity, cancellationToken)).Entity;
     }
 
+    public virtual TEntity Update(TEntity entity, CancellationToken cancellationToken)
+    {
+        if (entity == null) throw new ArgumentNullException(nameof(entity));
+        return Entity.Update(entity).Entity;
+    }
+
+    public virtual async Task<TEntity> UpdateAsync(TEntity entity, CancellationToken cancellationToken)
+    {
+        if (entity == null) throw new ArgumentNullException(nameof(entity));
+        return Entity.Update(entity).Entity;
+    }
+
+    public virtual void UpdateRange(IEnumerable<TEntity> entity, CancellationToken cancellationToken)
+    {
+        if (entity == null) throw new ArgumentNullException(nameof(entity));
+        Entity.UpdateRange(entity);
+    }
+
     public void BeginTransaction() => Context.Database.BeginTransaction();
 
     public async Task BeginTransactionAsync() => await Context.Database.BeginTransactionAsync();

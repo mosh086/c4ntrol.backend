@@ -7,7 +7,7 @@ using C4.Infrastructure.Identity.Entities;
 
 namespace C4.Infrastructure.UseCases.Security.User.Repositories;
 
-public class UserRoleRepository : Repository<AppUserRoleEntity, long>, IUserRoleRepository
+public class UserRoleRepository : PivotRepository<AppUserRoleEntity>, IUserRoleRepository
 {
     private readonly UserManager<UserEntity> _userManager;
     private readonly RoleManager<RoleEntity> _roleManager;
@@ -29,7 +29,7 @@ public class UserRoleRepository : Repository<AppUserRoleEntity, long>, IUserRole
 
         var userRoleEntity = new UserRoleEntity(entity.UserId, entity.RoleId);
         await Context.UserRoles.AddAsync(userRoleEntity);
-        entity.SetId(userRoleEntity.Id);
+        //entity.SetId(userRoleEntity.Id);
         return entity;
     }
 }

@@ -23,24 +23,36 @@ public class UserCreateHandler : Handler<UserCreateRequest, UserCreateResponse>
         try
         {
             await _userRepository.BeginTransactionAsync();
-            //  Check duplicate email, username, phonenumber, PersonalCode
+            // TODO  Check duplicate email, username, phonenumber
+
             var entity = ProviderServices.Mapper.Map<UserCreateRequest, AppUserEntity>(request);
             _userRepository.SetPassword(request.Password);
             entity = await _userRepository.AddAsync(entity, cancellationToken);
-            //  find role
-            var roleEntity = await _roleRepository.FindByNameAsync(request.RoleName, cancellationToken);
-            if (roleEntity is null)
+            // find role
+            
+            var roleEntity = await _roleRepository.FindByNamesAsync(request.RoleName, cancellationToken);
+            foreach (var role in roleEntity) 
             {
-                roleEntity = new AppRoleEntity(request.RoleName, request.RoleName);
-                roleEntity = await _roleRepository.AddAsync(roleEntity, cancellationToken);
+                if (role.Value is null)
+                {
+                    var newRoleEntity = new AppRoleEntity(role.Key);
+                    newRoleEntity = await _roleRepository.AddAsync(newRoleEntity, cancellationToken);
+
+                    //  create user role
+                    var userRoleEntity = new AppUserRoleEntity(entity.Id, newRoleEntity.Id);
+                    await _userRoleRepository.AddAsync(userRoleEntity, cancellationToken);
+                }
+                else
+                {
+                    var userRoleEntity = new AppUserRoleEntity(entity.Id, role.Value.Id);
+                    await _userRoleRepository.AddAsync(userRoleEntity, cancellationToken);
+                }
             }
-            //  create user role
-            var userRoleEntity = new AppUserRoleEntity(entity.Id, roleEntity.Id);
-            userRoleEntity = await _userRoleRepository.AddAsync(userRoleEntity, cancellationToken);
-            //  save changes
+            
+            // save changes
             await _userRepository.SaveChangeAsync();
             await _userRepository.CommitTransactionAsync();
-            return new UserCreateResponse($"Create Success User : {entity.DisplayName}");
+            return new UserCreateResponse($"Create Success User : {entity.UserName ?? entity.Name}");
         }
         catch (Exception)
         {
