@@ -231,3 +231,4 @@ BenchmarkDotNet.Artifacts/
 
 # AppSettings (often contains secrets)
 appsettings.local.json
+/.github/copilot-instructions.md
