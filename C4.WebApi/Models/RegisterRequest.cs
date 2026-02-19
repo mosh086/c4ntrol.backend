@@ -21,4 +21,7 @@ public class RegisterRequest
     [MinLength(10)]
     [MaxLength(10)]
     public string PhoneNumber { get; set; } = string.Empty;
+
+    [Required]
+    public string[] Roles { get; set; } = [];
 }

@@ -1,4 +1,8 @@
-﻿using C4.Infrastructure.Data.Constants;
+﻿using Azure.Core;
+using C4.Application.UseCases.Security.User.Handlers.AppUser.Create;
+using C4.Domain.UseCases.Security;
+using C4.Infrastructure.Data.Constants;
+using C4.Infrastructure.Identity.Entities;
 using C4.Infrastructure.Identity.Repositories;
 using C4.WebApi.Models;
 
@@ -13,10 +17,16 @@ public class AccountController : AuthorizationController
         _identityService = identityService;
     }
 
+    [AllowAnonymous]
     [HttpPost("Register")]
     public async Task<IActionResult> Register(RegisterRequest parameter)
     {
-        await Task.CompletedTask;
+        var entity = ProviderServices.Mapper.Map<RegisterRequest, UserEntity>(parameter);
+        var pass = _identityService.UserManager.PasswordHasher.HashPassword(entity, parameter.Password);
+        await _identityService.UserManager.CreateAsync(entity, pass);
+
+        await _identityService.UserManager.AddToRolesAsync(entity, parameter.Roles);
+
         return Ok(parameter);
     }
 
