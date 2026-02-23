@@ -1,0 +1,21 @@
+﻿using Powdernaut.Application.UseCases.Identity.Account.Handlers.User.Register;
+using Powdernaut.Application.UseCases.Identity.Account.Services;
+
+namespace Powdernaut.Application.UseCases.Identity.Authenticate.Handlers.User.Login;
+
+public class UserLoginHandler : Handler<UserLoginRequest, UserLoginResponse>
+{
+    private readonly IIdentityUserService _service;
+    private readonly ISignInService _signInService;
+    public UserLoginHandler(ProviderServices providerServices, IIdentityUserService service, ISignInService signInService) : base(providerServices)
+    {
+        _service = service;
+        _signInService = signInService;
+    }
+
+    public override async Task<UserLoginResponse> Handle(UserLoginRequest request, CancellationToken cancellationToken) 
+    {
+        (var result, var token ) = await _signInService.PasswordSignInAsync(request);
+        return new UserLoginResponse($"Create Success User : { token.Token }");
+    }
+}

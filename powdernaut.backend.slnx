@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="Powdernaut.Application/Powdernaut.Application.csproj" />
+  <Project Path="Powdernaut.Domain/Powdernaut.Domain.csproj" />
+  <Project Path="Powdernaut.Infrastructure/Powdernaut.Infrastructure.csproj" />
+  <Project Path="Powdernaut.WebApi/Powdernaut.WebApi.csproj" />
+</Solution>
