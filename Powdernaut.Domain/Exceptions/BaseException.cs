@@ -2,7 +2,7 @@
 
 public class BaseException : Exception
 {
-    public string[] Parameters { get; set; }
+    public string[]? Parameters { get; set; }
     public BaseException(string message, params string[] parameters) : base(message)
     {
         Parameters = parameters;
@@ -22,7 +22,7 @@ public class BaseException : Exception
 
         string result = Message;
 
-        for (int i = 0; i < Parameters.Length; i++)
+        for (int i = 0; i < Parameters!.Length; i++)
         {
             string placeHolder = $"{{{i}}}";
             result = result.Replace(placeHolder, Parameters[i]);

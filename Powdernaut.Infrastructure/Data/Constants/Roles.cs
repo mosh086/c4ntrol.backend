@@ -10,7 +10,7 @@ public static class Roles
     {
         return typeof(Roles).GetFields(BindingFlags.Public | BindingFlags.Static)
             .Where(f => f.FieldType == typeof(string))
-            .Select(f => (string)f.GetValue(null));
+            .Select(f => (string)f.GetValue(null)!)!;
     }
 }
 
@@ -25,6 +25,6 @@ public abstract class Policies
     {
         return typeof(Policies).GetFields(BindingFlags.Public | BindingFlags.Static)
             .Where(f => f.FieldType == typeof(string))
-            .Select(f => (string)f.GetValue(null));
+            .Select(f => (string)f.GetValue(null)!)!;
     }
 }

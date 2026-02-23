@@ -51,7 +51,7 @@ public class DataDapper : IDataDapper
         }
     }
 
-    public async Task<IEnumerable<TModel>> ReadListAsync<TModel>(string query, object parameters = null, IDbTransaction transaction = null)
+    public async Task<IEnumerable<TModel>> ReadListAsync<TModel>(string query, object? parameters = null, IDbTransaction? transaction = null)
     {
         _queryTimer.Restart();
         try
@@ -68,7 +68,7 @@ public class DataDapper : IDataDapper
         }
     }
 
-    public async Task<int> ExecuteAsync(string command, object parameters = null, IDbTransaction transaction = null)
+    public async Task<int> ExecuteAsync(string command, object? parameters = null, IDbTransaction? transaction = null)
     {
         _queryTimer.Restart();
         try
@@ -85,7 +85,7 @@ public class DataDapper : IDataDapper
         }
     }
 
-    public async Task<T> ExecuteScalarAsync<T>(string command, object parameters = null, IDbTransaction transaction = null)
+    public async Task<T> ExecuteScalarAsync<T>(string command, object? parameters = null, IDbTransaction? transaction = null)
     {
         _queryTimer.Restart();
         try

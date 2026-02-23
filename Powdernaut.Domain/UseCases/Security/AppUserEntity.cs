@@ -6,19 +6,19 @@ namespace Powdernaut.Domain.UseCases.Security;
 public partial class AppUserEntity : BaseAuditableEntity
 
 {
-    public string Name { get; private set; }
-    public string Family { get; private set; }
-    public string DisplayName { get; private set; }
-    public string PersonalCode { get; private set; }
-    public string UserName { get; private set; }
-    public string NormalizedUserName { get; private set; }
-    public string Email { get; private set; }
-    public string NormalizedEmail { get; private set; }
+    public string Name { get; private set; } = string.Empty;
+    public string Family { get; private set; } = string.Empty;
+    public string DisplayName { get; private set; } = string.Empty;
+    public string PersonalCode { get; private set; } = string.Empty;
+    public string UserName { get; private set; } = string.Empty;
+    public string NormalizedUserName { get; private set; } = string.Empty;
+    public string Email { get; private set; } = string.Empty;
+    public string NormalizedEmail { get; private set; } = string.Empty;
     public bool EmailConfirmed { get; private set; }
-    public string PasswordHash { get; private set; }
-    public string SecurityStamp { get; private set; }
+    public string PasswordHash { get; private set; } = string.Empty;
+    public string SecurityStamp { get; private set; } = string.Empty;
     public string? ConcurrencyStamp { get; set; } = Guid.NewGuid().ToString();
-    public string PhoneNumber { get; private set; }
+    public string PhoneNumber { get; private set; } = string.Empty;
     public bool PhoneNumberConfirmed { get; private set; }
     public bool TwoFactorEnabled { get; private set; }
     public DateTimeOffset? LockoutEnd { get; private set; }

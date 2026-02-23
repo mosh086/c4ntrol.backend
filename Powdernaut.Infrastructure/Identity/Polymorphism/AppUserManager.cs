@@ -51,7 +51,7 @@ public class AppUserManager<TUser> : UserManager<TUser> where TUser : UserEntity
     /// <returns></returns>
     public override async Task<IdentityResult> SetAuthenticationTokenAsync(TUser user, string loginProvider, string tokenName, string? tokenValue)
     {
-        var parameters = new UserTokenParameters(user.Id, LoginProvider, TokenName, tokenValue, tokenName);
+        var parameters = new UserTokenParameters(user.Id, LoginProvider, TokenName, tokenValue ?? string.Empty, tokenName);
         if (Context.Set<UserTokenEntity>().Any(item => item.UserId == user.Id && item.LoginProvider == loginProvider))
         {
             return new IdentityResult<string>(true, JsonConvert.SerializeObject(parameters));

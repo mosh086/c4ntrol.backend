@@ -30,16 +30,7 @@ public class SignInService : ISignInService
         
         var userEntity = await _identityService.UserManager.FindByEmailAsync(request.Username);
 
-        //_identityService.UserManager.PasswordHasher.VerifyHashedPassword(entity.Result, entity.Result.PasswordHash, parameter.Password);
-        //var pass = _identityService.UserManager.PasswordHasher.HashPassword(userEntity, request.Password);
-
         var loginResult = await _identityService.SignInManager.PasswordSignInAsync(userEntity, request.Password, request.IsRemember, false);
-
-        Console.WriteLine($"Succeeded: {loginResult.Succeeded}");
-        Console.WriteLine($"IsLockedOut: {loginResult.IsLockedOut}");
-        Console.WriteLine($"IsNotAllowed: {loginResult.IsNotAllowed}");
-        Console.WriteLine($"RequiresTwoFactor: {loginResult.RequiresTwoFactor}");
-
 
         if (loginResult.Succeeded)
         {

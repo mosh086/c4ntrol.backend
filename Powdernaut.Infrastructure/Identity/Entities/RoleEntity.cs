@@ -44,11 +44,9 @@ public class RoleEntity : IdentityRole<long>, IAuditableEntity<long>
     {
         return new AppRoleEntity(
             Id,
-            Name,
-            NormalizedName,
-            ConcurrencyStamp,
-            Title,
-            IsDeleted
-            );
+            Name ?? string.Empty,
+            NormalizedName ?? string.Empty,
+            ConcurrencyStamp ?? string.Empty,
+            Title);
     }
 }

@@ -39,13 +39,13 @@ public abstract class BaseDatabaseContext : IdentityDbContext<
     public T GetShadowPropertyValue<T>(object entity, string propertyName) where T : IConvertible
     {
         var value = Entry(entity).Property(propertyName).CurrentValue;
-        return value != null
+        return (value != null
             ? (T)Convert.ChangeType(value, typeof(T), CultureInfo.InvariantCulture)
-            : default;
+            : default)!;
     }
     public object GetShadowPropertyValue(object entity, string propertyName)
     {
-        return Entry(entity).Property(propertyName).CurrentValue;
+        return Entry(entity).Property(propertyName).CurrentValue!;
     }
     public IEnumerable<string> GetIncludePaths(Type clrEntityType)
     {
@@ -55,7 +55,7 @@ public abstract class BaseDatabaseContext : IdentityDbContext<
         while (true)
         {
             var entityNavigations = new List<INavigation>();
-            foreach (var navigation in entityType.GetNavigations())
+            foreach (var navigation in entityType!.GetNavigations())
             {
                 if (includedNavigations.Add(navigation))
                     entityNavigations.Add(navigation);

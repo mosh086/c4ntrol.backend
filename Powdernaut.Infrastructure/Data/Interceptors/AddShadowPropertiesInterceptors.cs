@@ -24,8 +24,8 @@ public class AddShadowPropertiesInterceptors : SaveChangesInterceptor
     }
     private static void AddShadowProperties(DbContextEventData eventData)
     {
-        var changeTracker = eventData.Context.ChangeTracker;
-        var userInfoService = eventData.Context.GetService<IUser>();
+        var changeTracker = eventData.Context!.ChangeTracker;
+        var userInfoService = eventData.Context!.GetService<IUser>();
         changeTracker.SetAuditableEntityPropertyValues(userInfoService);
     }
 

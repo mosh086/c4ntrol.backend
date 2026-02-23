@@ -6,14 +6,14 @@ namespace Powdernaut.Infrastructure.Identity.Models;
 
 public class IdentityOption
 {
-    public JwtOptions Jwt { get; set; }
+    public JwtOptions Jwt { get; set; } = default!;
 }
 public class JwtOptions
 {
     public int ExpireMinutes { get; set; }
-    public string Issuer { get; set; }
-    public string Audience { get; set; }
-    public string Key { get; set; }
+    public string Issuer { get; set; } = string.Empty;
+    public string Audience { get; set; } = string.Empty;
+    public string Key { get; set; } = string.Empty;
 }
 
 

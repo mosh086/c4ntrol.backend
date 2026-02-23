@@ -94,15 +94,15 @@ public class JwtTokenService : ITokenService
             new(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
             new(JwtRegisteredClaimNames.Iat, DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString(), ClaimValueTypes.Integer64),
             new(ClaimTypes.NameIdentifier, user.Id.ToString()),
-            new(ClaimTypes.Name, user.UserName),
-            new("Name", user.Name),
-            new("PhoneNumber", user.PhoneNumber),
+            new(ClaimTypes.Name, user.UserName ?? string.Empty),
+            new("Name", user.Name ?? string.Empty),
+            new("PhoneNumber", user.PhoneNumber ?? string.Empty),
             new("UserId", user.Id.ToString()),
             new("UserRoleId", user.Id.ToString()),//    TODO
             new("RoleName", user.Id.ToString()), // TODO
             new("RoleTitle", user.Id.ToString()), //TODO
-            new("Username", user.UserName),
-            new("Email", user.Email),
+            new("Username", user.UserName ?? string.Empty),
+            new("Email", user.Email ?? string.Empty),
             new("SecurityStamp", user.SecurityStamp ?? string.Empty)
         };
 
@@ -166,10 +166,10 @@ public class JwtTokenService : ITokenService
         {
             Id = user.Id,
             EntityId = user.EntityId.Value,
-            Username = user.UserName,
-            Email = user.Email,
-            PhoneNumber = user.PhoneNumber,
-            Name = user.Name
+            Username = user.UserName ?? string.Empty,
+            Email = user.Email ?? string.Empty,
+            PhoneNumber = user.PhoneNumber ?? string.Empty,
+            Name = user.Name ?? string.Empty
         };
     }
 }

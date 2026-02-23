@@ -2,19 +2,19 @@
 
 public interface IEntity<TKey>
 {
-    TKey Id { get; }
+    TKey? Id { get; }
     EntityId EntityId { get; }
 }
 
 public interface IBaseEntity<TKey>
 {
-    TKey Id { get; }
+    TKey? Id { get; }
 }
 
 public abstract class BaseEntity<TKey> : IBaseEntity<TKey>
 {
     [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public TKey Id { get; protected set; }
+    public TKey? Id { get; protected set; }
 
     protected BaseEntity() => _domainEvents = new();
 
@@ -30,7 +30,7 @@ public abstract class BaseEntity<TKey> : IBaseEntity<TKey>
 public abstract class Entity<TKey> : IEntity<TKey>
 {
     [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public TKey Id { get; protected set; }
+    public TKey? Id { get; protected set; }
     public EntityId EntityId { get; protected set; } = EntityId.CreateInstance();
 
     protected Entity() => _domainEvents = new();

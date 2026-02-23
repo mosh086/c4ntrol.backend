@@ -4,6 +4,7 @@
     <TargetFramework>net10.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+	<CodeAnalysisRuleSet>../powdernaut.ruleset</CodeAnalysisRuleSet>
     <UserSecretsId>b9fb0718-2a70-4d1a-afbd-ac0f57b2856a</UserSecretsId>
   </PropertyGroup>
 

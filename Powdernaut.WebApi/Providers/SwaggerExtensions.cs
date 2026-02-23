@@ -14,16 +14,14 @@ public static class SwaggerExtensions
             // Swagger document info
             c.SwaggerDoc("v1", new OpenApiInfo
             {
-                Title = "Clean Architecture WebAPI",
+                Title = "Powdernaut WebAPI",
                 Version = "v1",
-                Description = "An example of Clean Architecture WebAPI with Swagger and JWT Authentication",
+                Description = "Powdernaut",
                 Contact = new OpenApiContact
                 {
-                    Name = "Kamran Tajerbashi",
-                    Email = "kamrantajerbashi@gmail.com",
-                    Url = new Uri("https://github.com/KTajerbashi/CleanArchitecture.git")
+                    Name = "Salazar",
+                    Email = "mosh086@gmail.com"
                 },
-                TermsOfService = new Uri("https://example.com/terms"),
                 License = new OpenApiLicense
                 {
                     Name = "MIT",
@@ -44,8 +42,7 @@ public static class SwaggerExtensions
                 In = ParameterLocation.Header,
                 Type = SecuritySchemeType.Http,
                 Scheme = "Bearer",
-                BearerFormat = "JWT",
-                Description = "Enter 'Bearer' followed by your JWT token. Example: 'Bearer abc123...'"
+                BearerFormat = "JWT"
             });
 
             // Global Security Requirement for JWT
@@ -71,11 +68,11 @@ public static class SwaggerExtensions
 
         app.UseSwaggerUI(options =>
         {
-            options.SwaggerEndpoint("/swagger/v1/swagger.json", "Clean Architecture WebAPI v1");
-            options.RoutePrefix = "swagger"; // Access via /swagger
+            options.SwaggerEndpoint("/swagger/v1/swagger.json", "Powdernaut WebAPI v1");
+            options.RoutePrefix = "swagger";
             options.DisplayRequestDuration();
             options.EnableTryItOutByDefault();
-            options.DocExpansion(Swashbuckle.AspNetCore.SwaggerUI.DocExpansion.List); // Expand endpoints list
+            options.DocExpansion(Swashbuckle.AspNetCore.SwaggerUI.DocExpansion.List);
         });
 
         return app;

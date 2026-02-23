@@ -2,8 +2,6 @@
 using Powdernaut.Application.Utilities.Extensions;
 using Powdernaut.Domain.Common;
 using Powdernaut.Domain.UseCases.Security;
-using Powdernaut.Infrastructure.Identity.Parameters;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Powdernaut.Infrastructure.Identity.Entities;
@@ -87,9 +85,9 @@ public class UserEntity : IdentityUser<long>, IAuditableEntity<long>
         return new AppUserEntity(
             Id,
             EntityId.Value,
-            Name,
-            UserName,
-            Email,
-            PhoneNumber);
+            Name ?? string.Empty,
+            UserName ?? string.Empty,
+            Email ?? string.Empty,
+            PhoneNumber ?? string.Empty);
     }
 }

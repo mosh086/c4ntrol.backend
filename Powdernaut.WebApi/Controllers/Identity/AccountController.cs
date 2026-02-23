@@ -3,37 +3,16 @@ using Powdernaut.Application.UseCases.Identity.Account.Handlers.User.Register;
 
 namespace Powdernaut.WebApi.Controllers.Identity;
 
-public class AccountController : BaseController
+public class AccountController : AuthorizationController
 {
-    public AccountController()
-    {
-    }
-
-    //[AllowAnonymous]
+    [AllowAnonymous]
     [HttpPost]
     [Route("Register")]
     public async Task<IActionResult> Register(UserRegisterRequest request) => await RequestAsync<UserRegisterRequest, UserRegisterResponse>(request);
 
-    //[AllowAnonymous]
     [HttpPost]
     [Route("Role")]
     public async Task<IActionResult> Role(RoleCreateRequest request) => await RequestAsync<RoleCreateRequest, RoleCreateResponse>(request);
-    //[AllowAnonymous]
-    //[HttpPost("Register")]
-    //public async Task<IActionResult> Register(UserRegisterRequest parameter)
-    //{
-    //    //var entity = ProviderServices.Mapper.Map<RegisterRequest, UserEntity>(parameter);
-    //    var entity = new UserEntity(parameter);
-
-    //    await _identityService.RoleManager.CreateAsync(new RoleEntity { Name = "Admin" });
-
-    //    var pass = _identityService.UserManager.PasswordHasher.HashPassword(entity, parameter.Password);
-    //    await _identityService.UserManager.CreateAsync(entity, pass);
-
-    //    await _identityService.UserManager.AddToRolesAsync(entity, parameter.Roles);
-
-    //    return Ok(parameter);
-    //}
 
     //[AllowAnonymous]
     //[HttpDelete("Remove")]
