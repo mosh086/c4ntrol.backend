@@ -16,6 +16,6 @@ public class UserLoginHandler : Handler<UserLoginRequest, UserLoginResponse>
     public override async Task<UserLoginResponse> Handle(UserLoginRequest request, CancellationToken cancellationToken) 
     {
         (var result, var token ) = await _signInService.PasswordSignInAsync(request);
-        return new UserLoginResponse($"Create Success User : { token.Token }");
+        return new UserLoginResponse($"Create Success User : { token?.Token }");
     }
 }

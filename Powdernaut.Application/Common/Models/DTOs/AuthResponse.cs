@@ -2,8 +2,8 @@
 
 public class AuthResponse
 {
-    public string RefreshToken { get; set; }
-    public string Token { get; set; }
-    public UserProfileDTO User { get; set; }
+    public string RefreshToken { get; set; } = string.Empty;
+    public string Token { get; set; } = string.Empty;
+    public UserProfileDTO User { get; set; } = default!;
     public DateTime ExpiresIn { get; set; }
 }

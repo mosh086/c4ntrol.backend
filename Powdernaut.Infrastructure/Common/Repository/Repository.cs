@@ -60,37 +60,37 @@ public abstract class Repository<TEntity, TId> : IRepository<TEntity, TId>
 
     public async Task CommitTransactionAsync() => await Context.Database.CommitTransactionAsync();
 
-    public virtual TEntity Get(TId id, CancellationToken cancellationToken)
+    public virtual TEntity? Get(TId id, CancellationToken cancellationToken)
         => Entity.Find(id) ?? throw new KeyNotFoundException($"Entity with ID {id} not found");
 
-    public virtual TEntity Get(Guid entityId, CancellationToken cancellationToken)
+    public virtual TEntity? Get(Guid entityId, CancellationToken cancellationToken)
         => Entity.FirstOrDefault(item => item.EntityId.Equals(entityId))
            ?? throw new KeyNotFoundException($"Entity with EntityId {entityId} not found");
 
     public virtual IEnumerable<TEntity> Get(CancellationToken cancellationToken)
         => Entity.ToList();
 
-    public virtual TEntity GetAsNoTracking(TId id, CancellationToken cancellationToken)
+    public virtual TEntity? GetAsNoTracking(TId id, CancellationToken cancellationToken)
         => Entity.AsNoTracking().FirstOrDefault(e => e.Id.Equals(id))
            ?? throw new KeyNotFoundException($"Entity with ID {id} not found");
 
-    public virtual TEntity GetAsNoTracking(Guid entityId, CancellationToken cancellationToken)
+    public virtual TEntity? GetAsNoTracking(Guid entityId, CancellationToken cancellationToken)
         => Entity.AsNoTracking().FirstOrDefault(item => item.EntityId.Equals(entityId))
            ?? throw new KeyNotFoundException($"Entity with EntityId {entityId} not found");
 
-    public virtual async Task<TEntity> GetAsNoTrackingAsync(TId id, CancellationToken cancellationToken)
+    public virtual async Task<TEntity?> GetAsNoTrackingAsync(TId id, CancellationToken cancellationToken)
         => await Entity.AsNoTracking().FirstOrDefaultAsync(e => e.Id.Equals(id), cancellationToken)
            ?? throw new KeyNotFoundException($"Entity with ID {id} not found");
 
-    public virtual async Task<TEntity> GetAsNoTrackingAsync(Guid entityId, CancellationToken cancellationToken)
+    public virtual async Task<TEntity?> GetAsNoTrackingAsync(Guid entityId, CancellationToken cancellationToken)
         => await Entity.AsNoTracking().FirstOrDefaultAsync(item => item.EntityId.Equals(entityId), cancellationToken)
            ?? throw new KeyNotFoundException($"Entity with EntityId {entityId} not found");
 
-    public virtual async Task<TEntity> GetAsync(TId id, CancellationToken cancellationToken)
+    public virtual async Task<TEntity?> GetAsync(TId id, CancellationToken cancellationToken)
         => await Entity.FindAsync(new object[] { id }, cancellationToken)
            ?? throw new KeyNotFoundException($"Entity with ID {id} not found");
 
-    public virtual async Task<TEntity> GetAsync(Guid entityId, CancellationToken cancellationToken)
+    public virtual async Task<TEntity?> GetAsync(Guid entityId, CancellationToken cancellationToken)
     {
         return await Entity
             .FirstOrDefaultAsync(item => item.EntityId.Value.ToString() == entityId.ToString(), cancellationToken)
@@ -109,12 +109,14 @@ public abstract class Repository<TEntity, TId> : IRepository<TEntity, TId>
     public virtual bool Remove(TId id, CancellationToken cancellationToken)
     {
         var entity = Get(id, cancellationToken);
+        if (entity == null) return false;
         return Remove(entity, cancellationToken);
     }
 
     public virtual bool Remove(Guid entityId, CancellationToken cancellationToken)
     {
         var entity = Get(entityId, cancellationToken);
+        if (entity == null) return false;
         return Remove(entity, cancellationToken);
     }
 
@@ -128,12 +130,14 @@ public abstract class Repository<TEntity, TId> : IRepository<TEntity, TId>
     public virtual async Task<bool> RemoveAsync(TId id, CancellationToken cancellationToken)
     {
         var entity = await GetAsync(id, cancellationToken);
+        if (entity == null) return false;
         return await RemoveAsync(entity, cancellationToken);
     }
 
     public virtual async Task<bool> RemoveAsync(Guid entityId, CancellationToken cancellationToken)
     {
         var entity = await GetAsync(entityId, cancellationToken);
+        if (entity == null) return false;
         return await RemoveAsync(entity, cancellationToken);
     }
 
@@ -157,7 +161,6 @@ public abstract class Repository<TEntity, TId> : IRepository<TEntity, TId>
         }
     }
 
-    // In your Repository class, enhance SaveChangeAsync:
     public virtual async Task<int> SaveChangeAsync(CancellationToken cancellationToken = default)
     {
         try
@@ -174,7 +177,6 @@ public abstract class Repository<TEntity, TId> : IRepository<TEntity, TId>
         }
     }
 
-    // Additional helpful methods
     public virtual IQueryable<TEntity> GetAll()
         => Entity.AsQueryable();
 

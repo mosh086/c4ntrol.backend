@@ -10,8 +10,7 @@ public class InfraException : BaseException
 }
 public class IdentityException : InfraException
 {
-    public IEnumerable<string> Errors { get; }
-    public string Message { get; set; }
+    public IEnumerable<string> Errors { get; set; }
 
     public IdentityException(IEnumerable<IdentityError> errors)
         : base("Identity operation failed")

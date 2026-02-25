@@ -9,9 +9,8 @@ public class AppUserRoleEntity
 
     [ForeignKey(nameof(AppRoleEntity))]
     public virtual long RoleId { get; set; }
-    public virtual AppRoleEntity AppRoleEntity { get; set; } = new();
+    public virtual AppRoleEntity AppRoleEntity { get; set; } = default!;
 
-    //public AppUserRoleEntity() { }
     public AppUserRoleEntity(long userId, long roleId)
     {
         UserId = userId;

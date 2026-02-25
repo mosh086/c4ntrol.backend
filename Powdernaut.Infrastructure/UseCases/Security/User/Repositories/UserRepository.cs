@@ -6,8 +6,6 @@ using Powdernaut.Infrastructure.Common.Repository;
 using Powdernaut.Infrastructure.Data;
 using Powdernaut.Infrastructure.Exceptions;
 using Powdernaut.Infrastructure.Identity.Entities;
-using Powdernaut.Infrastructure.Identity.Parameters;
-using System.Threading.Tasks;
 
 namespace Powdernaut.Infrastructure.UseCases.Security.User.Repositories;
 
@@ -89,43 +87,43 @@ public class UserRepository : Repository<AppUserEntity, long>, IUserRepository
     public override IEnumerable<AppUserEntity> Get(CancellationToken cancellationToken)
         => _mapper.Map<UserEntity, AppUserEntity>(_userManager.Users);
 
-    public override async Task<AppUserEntity> GetAsync(long id, CancellationToken cancellationToken)
+    public override async Task<AppUserEntity?> GetAsync(long id, CancellationToken cancellationToken)
     {
         var entity = await _userManager.Users.SingleOrDefaultAsync(item => item.Id == id);
+        if (entity is null) return (AppUserEntity?)null;
         return _mapper.Map<UserEntity, AppUserEntity>(entity);
     }
 
-    public override AppUserEntity Get(long id, CancellationToken cancellationToken)
+    public override AppUserEntity? Get(long id, CancellationToken cancellationToken)
     {
         var entity = _userManager.Users.SingleOrDefault(item => item.Id == id);
+        if (entity is null) return (AppUserEntity?)null;
         return _mapper.Map<UserEntity, AppUserEntity>(entity);
     }
 
-    public override async Task<AppUserEntity> GetAsync(Guid entityId, CancellationToken cancellationToken)
-    {
-        var entity = await _userManager.Users.SingleOrDefaultAsync(item => item.EntityId.Equals(entityId));
-        return entity.AppUserEntity();
+    public override async Task<AppUserEntity?> GetAsync(Guid entityId, CancellationToken cancellationToken)
+        => (await _userManager.Users.SingleOrDefaultAsync(item => item.EntityId.Equals(entityId)))?.AppUserEntity();
+
+    public override AppUserEntity? Get(Guid entityId, CancellationToken cancellationToken)
+    { 
+        var entity = _userManager.Users.SingleOrDefault(item => item.EntityId.Equals(entityId));
+        if (entity is null) return (AppUserEntity?)null;
+        return _mapper.Map<UserEntity, AppUserEntity>(entity);
     }
     
-    public override AppUserEntity Get(Guid entityId, CancellationToken cancellationToken)
-        => _mapper.Map<UserEntity, AppUserEntity>(_userManager.Users.SingleOrDefault(item => item.EntityId.Equals(entityId)));
-    
     public override async Task<IEnumerable<AppUserEntity>> GetAsync(CancellationToken cancellationToken)
-    {
-        var entities = await Context.Users
+        => await Context.Users
             .AsNoTracking()
             .Where(u => u.IsDeleted == false)
             .Select(u => u.AppUserEntity())
             .ToListAsync(cancellationToken);
-        return entities;
-    }
 
     public void SetPassword(string password)
     {
         Password = password;
     }
 
-    public async Task<AppUserEntity> GetByEmailAsync(string email)
+    public async Task<AppUserEntity?> GetByEmailAsync(string email)
     {
         var test1 = await Entity.Where(item => item.Email.ToLower().Equals(email.ToLower())).SingleOrDefaultAsync()!;
         var test2 = await _userManager.FindByEmailAsync(email);
@@ -133,7 +131,7 @@ public class UserRepository : Repository<AppUserEntity, long>, IUserRepository
         return test1;
     }
 
-    public async Task<AppUserEntity> GetByUsernameAsync(string username)
+    public async Task<AppUserEntity?> GetByUsernameAsync(string username)
     {
         var test1 = await _userManager.FindByNameAsync(username);
         var test2 = await Entity.Where(item => item.UserName == username).SingleOrDefaultAsync()!;

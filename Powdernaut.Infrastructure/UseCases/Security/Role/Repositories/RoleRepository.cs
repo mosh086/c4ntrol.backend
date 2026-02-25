@@ -16,13 +16,14 @@ public class RoleRepository : Repository<AppRoleEntity, long>, IRoleRepository
         _roleManager = roleManager;
     }
 
-    public async Task<AppRoleEntity> FindByNameAsync(string roleName, CancellationToken cancellationToken)
+    public async Task<AppRoleEntity?> FindByNameAsync(string roleName, CancellationToken cancellationToken)
     {
         var role = await _roleManager.FindByNameAsync(roleName);
         if (role is null)
             return null;
         return role.AppRoleEntity();
     }
+
     public override async Task<AppRoleEntity> AddAsync(AppRoleEntity entity, CancellationToken cancellationToken)
     {
         RoleEntity roleEntity = new RoleEntity(entity.Name);
@@ -37,7 +38,8 @@ public class RoleRepository : Repository<AppRoleEntity, long>, IRoleRepository
         foreach (var roleName in roleNames)
         {
             var entity = await _roleManager.FindByNameAsync(roleName);
-            roles.Add(roleName, (entity is null) ? null : entity.AppRoleEntity());
+            if (entity is null) continue;
+            roles.Add(roleName, entity.AppRoleEntity());
         }
         return roles;
     }
@@ -45,15 +47,20 @@ public class RoleRepository : Repository<AppRoleEntity, long>, IRoleRepository
     public override async Task<IEnumerable<AppRoleEntity>> GetAsync(CancellationToken cancellationToken)
         => await Context.Roles.AsNoTracking().Select(r => r.AppRoleEntity()).ToListAsync(cancellationToken);
 
-    public override AppRoleEntity GetAsNoTracking(long id, CancellationToken cancellationToken)
-        => Context.Roles.AsNoTracking().FirstOrDefault(e => e.Id.Equals(id)).AppRoleEntity();
+    public override AppRoleEntity? GetAsNoTracking(long id, CancellationToken cancellationToken)
+    {
+        var entity = Context.Roles.AsNoTracking().FirstOrDefault(e => e.Id.Equals(id));
+        if (entity is null) return null;
+        return entity.AppRoleEntity();
+    }
 
-    public override AppRoleEntity GetAsNoTracking(Guid entityId, CancellationToken cancellationToken)
-        => Context.Roles.AsNoTracking().FirstOrDefault(item => item.EntityId.Equals(entityId)).AppRoleEntity();
 
-    public override async Task<AppRoleEntity> GetAsNoTrackingAsync(long id, CancellationToken cancellationToken)
-        => (await Context.Roles.AsNoTracking().FirstOrDefaultAsync(e => e.Id.Equals(id), cancellationToken)).AppRoleEntity();
+    public override AppRoleEntity? GetAsNoTracking(Guid entityId, CancellationToken cancellationToken)
+        => Context.Roles.AsNoTracking().FirstOrDefault(item => item.EntityId.Equals(entityId))?.AppRoleEntity();
 
-    public override async Task<AppRoleEntity> GetAsNoTrackingAsync(Guid entityId, CancellationToken cancellationToken)
-        => (await Context.Roles.AsNoTracking().FirstOrDefaultAsync(item => item.EntityId.Equals(entityId), cancellationToken)).AppRoleEntity();
+    public override async Task<AppRoleEntity?> GetAsNoTrackingAsync(long id, CancellationToken cancellationToken)
+        => (await Context.Roles.AsNoTracking().FirstOrDefaultAsync(e => e.Id.Equals(id), cancellationToken))?.AppRoleEntity();
+
+    public override async Task<AppRoleEntity?> GetAsNoTrackingAsync(Guid entityId, CancellationToken cancellationToken)
+        => (await Context.Roles.AsNoTracking().FirstOrDefaultAsync(item => item.EntityId.Equals(entityId), cancellationToken))?.AppRoleEntity();
 }

@@ -1,5 +1,4 @@
-﻿using Powdernaut.Domain.Common;
-using Powdernaut.Infrastructure.Identity.Entities.Parameters;
+﻿using Powdernaut.Infrastructure.Identity.Entities.Parameters;
 
 namespace Powdernaut.Infrastructure.Identity.Entities;
 
@@ -8,10 +7,6 @@ public class UserTokenEntity : IdentityUserToken<long>
     public string RefreshToken { get; private set; }
     public void SetToken(string refToken) => RefreshToken = refToken;
 
-    public UserTokenEntity()
-    {
-
-    }
     public UserTokenEntity(UserTokenParameters parameters)
     {
         UserId = parameters.UserId;

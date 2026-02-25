@@ -25,15 +25,15 @@ public interface IRepository<TEntity, TId> : IUnitOfWork
     bool Remove(Guid entityId, CancellationToken cancellationToken);
     Task<bool> RemoveAsync(Guid entityId, CancellationToken cancellationToken);
 
-    TEntity Get(TId id, CancellationToken cancellationToken);
-    Task<TEntity> GetAsync(TId id, CancellationToken cancellationToken);
-    TEntity GetAsNoTracking(TId id, CancellationToken cancellationToken);
-    Task<TEntity> GetAsNoTrackingAsync(TId id, CancellationToken cancellationToken);
+    TEntity? Get(TId id, CancellationToken cancellationToken);
+    Task<TEntity?> GetAsync(TId id, CancellationToken cancellationToken);
+    TEntity? GetAsNoTracking(TId id, CancellationToken cancellationToken);
+    Task<TEntity?> GetAsNoTrackingAsync(TId id, CancellationToken cancellationToken);
 
-    TEntity Get(Guid entityId, CancellationToken cancellationToken);
-    Task<TEntity> GetAsync(Guid entityId, CancellationToken cancellationToken);
-    TEntity GetAsNoTracking(Guid entityId, CancellationToken cancellationToken);
-    Task<TEntity> GetAsNoTrackingAsync(Guid entityId, CancellationToken cancellationToken);
+    TEntity? Get(Guid entityId, CancellationToken cancellationToken);
+    Task<TEntity?> GetAsync(Guid entityId, CancellationToken cancellationToken);
+    TEntity? GetAsNoTracking(Guid entityId, CancellationToken cancellationToken);
+    Task<TEntity?> GetAsNoTrackingAsync(Guid entityId, CancellationToken cancellationToken);
 
     IEnumerable<TEntity> Get(CancellationToken cancellationToken);
     Task<IEnumerable<TEntity>> GetAsync(CancellationToken cancellationToken);

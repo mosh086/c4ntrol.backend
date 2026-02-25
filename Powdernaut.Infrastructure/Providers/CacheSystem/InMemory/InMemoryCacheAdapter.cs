@@ -39,11 +39,11 @@ public class InMemoryCacheAdapter : ICacheAdapter
         });
     }
 
-    public TOutput Get<TOutput>(string key)
+    public TOutput? Get<TOutput>(string key)
     {
         _logger.LogTrace("InMemoryCache Adapter Try Get Cache with key : {key}", key);
 
-        var result = _memoryCache.TryGetValue(key, out TOutput resultObject);
+        var result = _memoryCache.TryGetValue(key, out TOutput? resultObject);
 
         if (result)
             _logger.LogTrace("InMemoryCache Adapter Successful Get Cache with key : {key} and data : {data}",

@@ -16,6 +16,10 @@ public class RoleGetByIdHandler : Handler<RoleGetByIdRequest, RoleGetByIdRespons
         try
         {
             var data = await _repository.GetAsNoTrackingAsync(request.EntityId, cancellationToken);
+            if (data is null)
+            {
+                return new RoleGetByIdResponse();
+            }
             var result = ProviderServices.Mapper.Map<AppRoleEntity, RoleGetByIdResponse>(data);
             return result;
         }

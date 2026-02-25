@@ -28,7 +28,7 @@ public class RoleEntity : IdentityRole<long>, IAuditableEntity<long>
         IsDeleted = true;
     }
 
-    public string Title { get; private set; }
+    public string? Title { get; private set; }
 
     public RoleEntity()
     {
@@ -47,6 +47,6 @@ public class RoleEntity : IdentityRole<long>, IAuditableEntity<long>
             Name ?? string.Empty,
             NormalizedName ?? string.Empty,
             ConcurrencyStamp ?? string.Empty,
-            Title);
+            Title ?? string.Empty);
     }
 }
