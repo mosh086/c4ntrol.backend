@@ -1,0 +1,13 @@
+﻿global using AutoMapper;
+global using Powdernaut.Application.Common.Handlers;
+global using Powdernaut.Application.Common.Models.DTOs;
+global using Powdernaut.Application.Common.Models.Requests;
+global using Powdernaut.Application.Common.Patterns.UnitOfWorkPattern;
+global using Powdernaut.Application.Common.Repository;
+global using Powdernaut.Application.Exceptions;
+global using Powdernaut.Application.Providers;
+global using Powdernaut.Domain.Common;
+global using FluentValidation;
+global using MediatR;
+global using System.ComponentModel.DataAnnotations.Schema;
+global using System.Linq.Expressions;
